@@ -2,13 +2,14 @@ import * as React from 'react';
 import { useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CreateIcon from '@mui/icons-material/Create';
 import SaveIcon from '@mui/icons-material/Save';
+import { styled } from '@mui/material/styles';
 const dataInicial = [
   { SKU: 'X010', MinimoKgsCarga: 1615, 'Inv.BPT + CEDIS dia 5 am': 4077, 'WIP + Programa hoy': 0, '07-nov': 849, 'Inv. Final 1': 3228, '08-nov': 474, 'Inv Final 2': 2754, Tiendita: 2630, Programar: -125, 'Ajuste Cargas': 0, Pedido: 2754, 'Inv final 3': 125, 'Dif Inv final':2754 },
   { SKU: 'X479', MinimoKgsCarga: 1164, 'Inv.BPT + CEDIS dia 5 am': 559, 'WIP + Programa hoy': 0, '07-nov': 0, 'Inv. Final 1': 559, '08-nov': 0, 'Inv Final 2': 559, Tiendita: 700, Programar: 141, 'Ajuste Cargas': 1, Pedido: 1164, 'Inv final 3': 1723, 'Dif Inv final':1723 },
@@ -32,6 +33,7 @@ const columns = [
   'Dif Inv final',
 ];
 
+
 function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }) {
     return (
       <TableCell>
@@ -51,9 +53,22 @@ function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }
         )}
       </TableCell>
     );
-  }
+}
   
-  export default function BasicTable() {
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: '#e2e2e2',
+      color: '#13100c',
+      fontWeight: 700,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+export default function BasicTable() {
     const [data, setData] = useState(dataInicial);
     const [editingCell, setEditingCell] = useState(null);
   
@@ -82,7 +97,8 @@ function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell key={column}>{column}</TableCell>
+                <StyledTableCell align="right" key={column}>{column}</StyledTableCell>
+            
               ))}
             </TableRow>
           </TableHead>
