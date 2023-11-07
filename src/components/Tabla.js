@@ -10,9 +10,10 @@ import Paper from '@mui/material/Paper';
 import CreateIcon from '@mui/icons-material/Create';
 import SaveIcon from '@mui/icons-material/Save';
 import { styled } from '@mui/material/styles';
+
 const dataInicial = [
   { SKU: 'X010', 'Minimo Kgs/carga': 1615, 'Inv.BPT + CEDIS dia 5 am': 4077, 'WIP + Programa hoy': 0, '07-nov': 849, 'Inv. Final 1': 3228, '08-nov': 474, 'Inv Final 2': 2754, Tiendita: 2630, Programar: -125, 'Ajuste Cargas': 0, Pedido: 2754, 'Inv final 3': 125, 'Dif Inv final':2754 },
-  { SKU: 'X479', 'Minimo Kgs/carga': 1164, 'Inv.BPT + CEDIS dia 5 am': 559, 'WIP + Programa hoy': 0, '07-nov': 0, 'Inv. Final 1': 559, '08-nov': 0, 'Inv Final 2': 559, Tiendita: 700, Programar: 141, 'Ajuste Cargas': 1, Pedido: 1164, 'Inv final 3': 1723, 'Dif Inv final':1723 },
+  { SKU: 'X479', 'Minimo Kgs/carga': 800, 'Inv.BPT + CEDIS dia 5 am': 559, 'WIP + Programa hoy': 0, '07-nov': 0, 'Inv. Final 1': 559, '08-nov': 0, 'Inv Final 2': 559, Tiendita: 700, Programar: 141, 'Ajuste Cargas': 1, Pedido: 1164, 'Inv final 3': 1723, 'Dif Inv final':1723 },
   { SKU: 'X971', 'Minimo Kgs/carga': 2568, 'Inv.BPT + CEDIS dia 5 am': 2299, 'WIP + Programa hoy': 0, '07-nov': 854, 'Inv. Final 1': 1445, '08-nov': 760, 'Inv Final 2': 685, Tiendita: 3792, Programar: 3107, 'Ajuste Cargas': 2, Pedido: 5136, 'Inv final 3': 5821, 'Dif Inv final':5821 },
 ];
 
@@ -41,7 +42,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
-      
     },
   }));
 
@@ -58,9 +58,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }) {
-    console.log(value, "cell")
+    
+    let textColor = "inherit";
+
+    if (column === "Minimo Kgs/carga") {
+      textColor = value > 1000 ? "green" : "red";
+    }
+
     return (
-      <StyledTableCell align="center">
+      <StyledTableCell align="center" style={{ color: textColor }}>
         {column === 'Ajuste Cargas' ? (
           isEditing ? (
             <div>
@@ -78,6 +84,7 @@ function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }
       </StyledTableCell>
     );
 }
+
 export default function BasicTable() {
     const [data, setData] = useState(dataInicial);
     const [editingCell, setEditingCell] = useState(null);
