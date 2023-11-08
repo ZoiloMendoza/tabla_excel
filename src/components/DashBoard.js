@@ -5,6 +5,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
+import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -105,8 +106,9 @@ export default function DashBoard() {
   };
 
   return (
-    <Box sx={{ display: "flex", background: "#f4f3f6" }}>
+    <Box sx={{ display: "flex"}}>
       <CssBaseline />
+
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -121,11 +123,22 @@ export default function DashBoard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
-          </Typography>
+          
+          <Box sx={{ display: 'flex', justifyContent:'end', width:'100%' }}>
+              <Button sx={{ color: '#fff' }}>
+                Help
+              </Button>
+              <Button sx={{ color: '#fff' }}>
+                Settings
+              </Button>
+              <Button sx={{ color: '#fff' }}>
+                Logout
+              </Button>
+            
+          </Box>
         </Toolbar>
       </AppBar>
+
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -176,7 +189,7 @@ export default function DashBoard() {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3,background: "#f4f3f6" }}>
         <DrawerHeader />
         <Grid container spacing={2} columns={12}>
           <Grid item xs={12}>
