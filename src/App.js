@@ -1,9 +1,9 @@
-import ClippedDrawer from './components/DashBoard';
-import TableComponent from './components/Tabla';
+import DashBoard from './components/DashBoard';
 
 function App() {
   return (
-   <ClippedDrawer/>
+   <DashBoard/>
+  
   );
 }
 

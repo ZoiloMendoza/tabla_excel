@@ -17,12 +17,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import FourPapers from './FourPapers.js';
-import BasicTable from './Tabla.js';
+import Tabla from './Tabla.js';
 import Grid from '@mui/material/Grid';
 import SpeedIcon from '@mui/icons-material/Speed';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+
 
 const drawerWidth = 240;
 
@@ -91,7 +92,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MiniDrawer() {
+export default function DashBoard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -182,7 +183,7 @@ export default function MiniDrawer() {
             <FourPapers />
           </Grid>
           <Grid item xs={12}>
-            <BasicTable />
+            <Tabla/>
           </Grid>
         </Grid>
       </Box>
