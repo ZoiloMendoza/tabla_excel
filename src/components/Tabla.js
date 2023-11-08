@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import CreateIcon from '@mui/icons-material/Create';
 import SaveIcon from '@mui/icons-material/Save';
 import { styled } from '@mui/material/styles';
+import ClearIcon from '@mui/icons-material/Clear';
+import AddIcon from '@mui/icons-material/Add';
 import TablaDinamica from './TablaDinamica';
 import Grid from '@mui/material/Grid';
 
@@ -88,73 +90,75 @@ function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }
 }
 
 export default function Tabla() {
-    const [data, setData] = useState(dataInicial);
-    const [editingCell, setEditingCell] = useState(null);
-  
-    const handleEditClick = (rowIndex) => {
-      setEditingCell(rowIndex);
-    };
-  
-    const handleSaveClick = (rowIndex) => {
-      // Guardar los cambios en la celda de la fila rowIndex
-      setEditingCell(null);
-    };
-  
-    const handleChange = (e, rowIndex) => {
-      // Actualizar el valor de la celda en la fila rowIndex
-      const newValue = e.target.value;
-      const updatedData = data.map((row, index) =>
-        index === rowIndex ? { ...row, 'Ajuste Cargas': newValue } : row
-      );
-  
-      setData(updatedData);
-    };
+  const [data, setData] = useState(dataInicial);
+  const [editingCell, setEditingCell] = useState(null);
+  const [ocultarTablaDinamica, setOcultarTablaDinamica] = useState(false);
+  const handleEditClick = (rowIndex) => {
+    setEditingCell(rowIndex);
+  };
 
-   console.log(editingCell, 'editingCell')
-    return (
-      <Paper sx={{ padding: "10px" }}>
-        <Grid container spacing={2} columns={12}>
-          <Grid item xs={10}>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    {columns.map((column) => (
-                      <StyledTableCell align="left" key={column}>
-                        {column}
-                      </StyledTableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.map((row, rowIndex) => (
-                    <StyledTableRow key={rowIndex}>
-                      {columns.map((column) => (
-                        <Cell
-                          key={column}
-                          column={column}
-                          value={row[column]}
-                          isEditing={
-                            rowIndex === editingCell &&
-                            column === "Ajuste Cargas"
-                          }
-                          handleChange={(e) => handleChange(e, rowIndex)}
-                          handleEdit={() => handleEditClick(rowIndex)}
-                          handleSave={() => handleSaveClick(rowIndex)}
-                        />
-                      ))}
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item xs={2}>
-            <TablaDinamica />
-          </Grid>
-        </Grid>
-      </Paper>
+  const handleSaveClick = (rowIndex) => {
+    // Guardar los cambios en la celda de la fila rowIndex
+    setEditingCell(null);
+  };
+
+  const handleChange = (e, rowIndex) => {
+    // Actualizar el valor de la celda en la fila rowIndex
+    const newValue = e.target.value;
+    const updatedData = data.map((row, index) =>
+      index === rowIndex ? { ...row, "Ajuste Cargas": newValue } : row
     );
+
+    setData(updatedData);
+  };
+
+  const handleOcultarTablaDinamica = () => {
+    setOcultarTablaDinamica(!ocultarTablaDinamica);
+  };
+  //columns={40} revisar
+  return (
+    <Paper sx={{ padding: "10px" }}>
+      <Grid container spacing={1} columns={40}>
+        <Grid item xs={ocultarTablaDinamica ? 34 : 39}>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <StyledTableCell align="left" key={column}>
+                      {column}
+                    </StyledTableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map((row, rowIndex) => (
+                  <StyledTableRow key={rowIndex}>
+                    {columns.map((column) => (
+                      <Cell
+                        key={column}
+                        column={column}
+                        value={row[column]}
+                        isEditing={
+                          rowIndex === editingCell && column === "Ajuste Cargas"
+                        }
+                        handleChange={(e) => handleChange(e, rowIndex)}
+                        handleEdit={() => handleEditClick(rowIndex)}
+                        handleSave={() => handleSaveClick(rowIndex)}
+                      />
+                    ))}
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+        <Grid item xs={ocultarTablaDinamica ? 6 : 1}>
+          {ocultarTablaDinamica ? <><ClearIcon onClick={handleOcultarTablaDinamica} sx={{textAlign:'center'}}/><TablaDinamica/></> : <Paper><AddIcon onClick={handleOcultarTablaDinamica} sx={{textAlign:'center'}}/></Paper> }
+        </Grid>
+      </Grid>
+    </Paper>
+  );
 }
 
 

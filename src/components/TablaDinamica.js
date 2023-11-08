@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+//import { useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -7,8 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import ClearIcon from '@mui/icons-material/Clear';
-import AddIcon from '@mui/icons-material/Add';
 import { styled } from '@mui/material/styles';
 
 const dataInicial = [
@@ -54,22 +52,12 @@ function Cell({value}) {
     );
 }
 
-export default function TablaDinamica() {
+export default function TablaDinamica({funcionOcultar}) {
     //const [data, setData] = useState(dataInicial);
-    const [ocultar, setOcultar] = useState(false);
-  
-    const handleOcultar = () => {
-      setOcultar(!ocultar);
-    };
-    if(ocultar){
-        return <Paper><AddIcon onClick={handleOcultar}/></Paper>
-    }
-
-   console.log(ocultar, 'ocultar')
     return (
       <Paper>
       <TableContainer component={Paper}>
-      <ClearIcon onClick={handleOcultar}/>
+      
         <Table sx={{ minWidth: 180 }} aria-label="simple table"> 
         
           <TableHead>
