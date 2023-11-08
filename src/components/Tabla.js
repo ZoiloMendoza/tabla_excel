@@ -43,7 +43,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
     },
-  }));
+}));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(even)': { //Se cambio de odd a even
@@ -54,7 +54,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:last-child td, &:last-child th': {
       border: 0,
     },
-  }));
+}));
 
 
 function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }) {
@@ -66,7 +66,7 @@ function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }
     }
 
     return (
-      <StyledTableCell align="center" style={{ color: textColor }}>
+      <StyledTableCell align="left" style={{ color: textColor }}>
         {column === 'Ajuste Cargas' ? (
           isEditing ? (
             <div>
@@ -107,14 +107,16 @@ export default function BasicTable() {
   
       setData(updatedData);
     };
-   console.log(data)
+
+   console.log(editingCell, 'editingCell')
     return (
+      <Paper sx={{padding:'10px'}}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <StyledTableCell align="center" key={column}>{column}</StyledTableCell>
+                <StyledTableCell align="left" key={column}>{column}</StyledTableCell>
               ))}
             </TableRow>
           </TableHead>
@@ -137,6 +139,7 @@ export default function BasicTable() {
           </TableBody>
         </Table>
       </TableContainer>
+      </Paper>
     );
 }
 
