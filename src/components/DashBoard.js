@@ -7,7 +7,6 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -17,7 +16,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import FourPapers from './FourPapers.js';
+import TablaDinamica from './TablaDinamica.js';
 import Tabla from './Tabla.js';
 import Grid from '@mui/material/Grid';
 import SpeedIcon from '@mui/icons-material/Speed';
@@ -106,7 +105,7 @@ export default function DashBoard() {
   };
 
   return (
-    <Box sx={{ display: "flex"}}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
 
       <AppBar position="fixed" open={open}>
@@ -123,18 +122,11 @@ export default function DashBoard() {
           >
             <MenuIcon />
           </IconButton>
-          
-          <Box sx={{ display: 'flex', justifyContent:'end', width:'100%' }}>
-              <Button sx={{ color: '#fff' }}>
-                Help
-              </Button>
-              <Button sx={{ color: '#fff' }}>
-                Settings
-              </Button>
-              <Button sx={{ color: '#fff' }}>
-                Logout
-              </Button>
-            
+
+          <Box sx={{ display: "flex", justifyContent: "end", width: "100%" }}>
+            <Button sx={{ color: "#fff" }}>Help</Button>
+            <Button sx={{ color: "#fff" }}>Settings</Button>
+            <Button sx={{ color: "#fff" }}>Logout</Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -189,17 +181,36 @@ export default function DashBoard() {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3,background: "#f4f3f6" }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f4f3f6" }}>
         <DrawerHeader />
         <Grid container spacing={2} columns={12}>
-          <Grid item xs={12}>
-            <FourPapers />
+          <Grid item xs={10}>
+            <Box
+              sx={{
+                maxHeight: "85vh",
+                width: "100%",
+                overflowY: "auto",
+                marginBottom: "0",
+              }}
+            >
+              <Tabla />
+            </Box>
           </Grid>
-          <Grid item xs={12}>
-            <Tabla/>
+          <Grid item xs={2}>
+            <Box
+              sx={{
+                maxHeight: "85vh",
+                width: "100%",
+                overflowY: "auto",
+                marginBottom: "0",
+              }}
+            >
+              <TablaDinamica />
+            </Box>
           </Grid>
         </Grid>
       </Box>
     </Box>
   );
 }
+
