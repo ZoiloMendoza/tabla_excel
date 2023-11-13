@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 
 const dataInicial = [
@@ -75,6 +76,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       backgroundColor: '#e2e2e2',
       color: '#13100c',
       fontWeight: 700,
+      textAlign: 'center', 
+      padding:'7px'
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
@@ -85,6 +88,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(even)': { //Se cambio de odd a even
       backgroundColor: 'rgba(223, 235, 237, 0.5)',
       textAlign: 'center', 
+      padding:'5px'
     },
     // hide last border
     '&:last-child td, &:last-child th': {
@@ -94,21 +98,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 function Cell({value}) {
-    
     return (
-      <StyledTableCell align="left">
+      <StyledTableCell align="center">
           {value}
       </StyledTableCell>
     );
 }
 
-export default function TablaDinamica({funcionOcultar}) {
+export default function TablaDinamica({onClick}) {
     //const [data, setData] = useState(dataInicial);
     return (
-      <Paper>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{padding:'0px'}}>
       
-        <Table sx={{ minWidth: 180 }} aria-label="simple table"> 
+        <Table sx={{ minWidth: 150 }} aria-label="simple table"> 
         
           <TableHead>
             <TableRow>
@@ -131,6 +133,6 @@ export default function TablaDinamica({funcionOcultar}) {
           </TableBody>
         </Table>
       </TableContainer>
-      </Paper>
+    
     );
 }
