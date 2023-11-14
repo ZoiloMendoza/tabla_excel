@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Tabla from '../Tabla/Tabla.js';
+import TablaInteractiva from '../TablaInteractiva/TablaInteractiva.js';
 import Grid from '@mui/material/Grid';
 import AppBarSideBar from '../AppBarSideBar/AppBarSideBar.js';
 import BasicSpeedDial from '../BasicSpeedDial/BasicSpeedDial.js';
@@ -33,7 +34,7 @@ export default function DashBoard() {
           <DrawerHeader />
           <Grid container columns={80}>
             <Grid item xs={openTable ? 64 : 80}>
-              <Tabla />
+              <TablaInteractiva />
             </Grid>
             {openTable ? (
               <Grid item xs={16}>
