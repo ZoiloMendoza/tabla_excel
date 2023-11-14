@@ -7,17 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import CreateIcon from '@mui/icons-material/Create';
-import SaveIcon from '@mui/icons-material/Save';
-import TablePagination from '@mui/material/TablePagination';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Button from '@mui/material/Button';
-import { NewspaperSharp } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 
 const dataInicial = [
@@ -276,8 +271,7 @@ function Cell({ column, value}) {
 export default function TablaInteractiva() {
   const [columnaOriginal, setColumnaOriginal] = useState(columns) 
   const [columnsIterable, setColumnsIterable] = useState(columns.slice(0, columns.length - 3))
-  const [rowsPerPage, setRowsPerPage] = React.useState(11);
-  const [page, setPage] = React.useState(0);
+
   const derechadaColumns = () => {
     const derecha = columnaOriginal.slice(columnaOriginal.length - 3, columnaOriginal.length )
     const ajusteArray = columnsIterable.slice(0, columnsIterable.length - 3)
@@ -290,17 +284,7 @@ export default function TablaInteractiva() {
     const newArray = [...ajusteArray, ...izquierda]
     setColumnsIterable(newArray)
   }
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-    const derecha = columnaOriginal.slice(columnaOriginal.length - 3, columnaOriginal.length )
-    const ajusteArray = columnsIterable.slice(0, columnsIterable.length - 3)
-    const newArray = [...ajusteArray, ...derecha]
-    setColumnsIterable(newArray)
-  };
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 1));
-    setPage(0);
-  };
+ 
 
   return (
     <Card sx={{ minWidth: 275, padding:'10px' }}>
