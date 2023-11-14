@@ -21,7 +21,7 @@ export default function ButtomExpand({text, open, openExpant, index, onClick}){
           sx={{
             minHeight: 48,
             justifyContent: open ? "initial" : "center",
-            px: 1,
+            px: open ? 1 : 2.5//2.5
           }}
           onClick={onClick}
         >
@@ -51,7 +51,7 @@ export default function ButtomExpand({text, open, openExpant, index, onClick}){
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText primary="Starred" />
+            <ListItemText primary="Plan Producción" />
           </ListItemButton>
         </List>
       </Collapse>
