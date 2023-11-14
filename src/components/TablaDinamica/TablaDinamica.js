@@ -108,14 +108,22 @@ function Cell({value}) {
 export default function TablaDinamica({onClick}) {
     //const [data, setData] = useState(dataInicial);
     return (
-      <TableContainer component={Paper} sx={{padding:'0px'}}>
-      
-        <Table sx={{ minWidth: 150 }} aria-label="simple table"> 
-        
+      <TableContainer
+        component={Paper}
+        sx={{
+          //width: "100%",
+          overflowY: "auto",
+          marginBottom: "0",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
+        <Table sx={{ minWidth: 200}} aria-label="simple table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <StyledTableCell align="left" key={column}>{column}</StyledTableCell>
+                <StyledTableCell align="left" key={column}>
+                  {column}
+                </StyledTableCell>
               ))}
             </TableRow>
           </TableHead>
@@ -123,16 +131,12 @@ export default function TablaDinamica({onClick}) {
             {dataInicial.map((row, rowIndex) => (
               <StyledTableRow key={rowIndex}>
                 {columns.map((column) => (
-                  <Cell
-                    key={column}
-                    value={row[column]}
-                  />
+                  <Cell key={column} value={row[column]} />
                 ))}
               </StyledTableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-    
     );
 }
