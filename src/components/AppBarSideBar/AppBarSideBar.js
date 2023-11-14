@@ -12,14 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import SpeedIcon from '@mui/icons-material/Speed';
-import TimelineIcon from '@mui/icons-material/Timeline';
-import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-
+import ButtomExpand from '../ButtomExpand/ButtomExpand';
 const drawerWidth = 240;
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -88,6 +81,7 @@ const AppBar = styled(MuiAppBar, {
   
   export default function AppBarSideBar() {
     const [open, setOpen] = React.useState(false);
+    const [openExpant, setOpenExpant] = React.useState([false,false,false,false]);
     const theme = useTheme();
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -96,6 +90,16 @@ const AppBar = styled(MuiAppBar, {
     const handleDrawerClose = () => {
       setOpen(false);
     };
+  
+    const handleClickExpant = (index) => {
+      setOpenExpant((prev) => {
+        const newExpant =[...prev];
+        newExpant[index] = !newExpant[index];
+        //console.log(newExpant)
+        return newExpant;
+      });
+    };
+
     return (
       <>
         <AppBar position="fixed" open={open}>
@@ -136,36 +140,11 @@ const AppBar = styled(MuiAppBar, {
               "Opportunity Forecast",
               "Sales Activity",
               "Employee Sales",
-            ].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {index === 0 ? (
-                      <SpeedIcon />
-                    ) : index === 1 ? (
-                      <TimelineIcon />
-                    ) : index === 2 ? (
-                      <LeaderboardOutlinedIcon />
-                    ) : index === 3 ? (
-                      <GroupOutlinedIcon />
-                    ) : null}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+            ].map((text, index) => {
+              return <ListItem key={text} disablePadding sx={{ display: "block" }}>
+                <ButtomExpand text={text} open={open} openExpant={openExpant[index]} index={index} onClick={() => handleClickExpant(index)}/>
               </ListItem>
-            ))}
+  })}
           </List>
           <Divider />
         </Drawer>

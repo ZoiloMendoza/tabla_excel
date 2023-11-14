@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CreateIcon from '@mui/icons-material/Create';
 import SaveIcon from '@mui/icons-material/Save';
+import TablePagination from '@mui/material/TablePagination';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -17,42 +18,217 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Button from '@mui/material/Button';
 import { NewspaperSharp } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 
 const dataInicial = [
-  { SKU: 'X010', 'Minimo Kgs/carga': 1615, 'Inv.BPT + CEDIS': 4077, 'WIP + Prog hoy': 0, '07-nov': 849, 'Inv. Final 1': 3228, '08-nov': 474, 'Inv Final 2': 2754, Tiendita: 2630, Programar: -125, 'Ajuste Cargas': 0, Pedido: 2754, 'Inv final 3': 125, 'Dif Inv final':2754 },
-  { SKU: 'X479', 'Minimo Kgs/carga': 800, 'Inv.BPT + CEDIS': 559, 'WIP + Prog hoy': 0, '07-nov': 0, 'Inv. Final 1': 559, '08-nov': 0, 'Inv Final 2': 559, Tiendita: 700, Programar: 141, 'Ajuste Cargas': 1, Pedido: 1164, 'Inv final 3': 1723, 'Dif Inv final':1723 },
-  { SKU: 'X971', 'Minimo Kgs/carga': 2568, 'Inv.BPT + CEDIS': 2299, 'WIP + Prog hoy': 0, '07-nov': 854, 'Inv. Final 1': 1445, '08-nov': 760, 'Inv Final 2': 685, Tiendita: 3792, Programar: 3107, 'Ajuste Cargas': 2, Pedido: 5136, 'Inv final 3': 5821, 'Dif Inv final':5821 },
-  { SKU: 'X010', 'Minimo Kgs/carga': 1615, 'Inv.BPT + CEDIS': 4077, 'WIP + Prog hoy': 0, '07-nov': 849, 'Inv. Final 1': 3228, '08-nov': 474, 'Inv Final 2': 2754, Tiendita: 2630, Programar: -125, 'Ajuste Cargas': 0, Pedido: 2754, 'Inv final 3': 125, 'Dif Inv final':2754 },
-  { SKU: 'X479', 'Minimo Kgs/carga': 800, 'Inv.BPT + CEDIS': 559, 'WIP + Prog hoy': 0, '07-nov': 0, 'Inv. Final 1': 559, '08-nov': 0, 'Inv Final 2': 559, Tiendita: 700, Programar: 141, 'Ajuste Cargas': 1, Pedido: 1164, 'Inv final 3': 1723, 'Dif Inv final':1723 },
-  { SKU: 'X971', 'Minimo Kgs/carga': 2568, 'Inv.BPT + CEDIS': 2299, 'WIP + Prog hoy': 0, '07-nov': 854, 'Inv. Final 1': 1445, '08-nov': 760, 'Inv Final 2': 685, Tiendita: 3792, Programar: 3107, 'Ajuste Cargas': 2, Pedido: 5136, 'Inv final 3': 5821, 'Dif Inv final':5821 },
-  { SKU: 'X971', 'Minimo Kgs/carga': 2568, 'Inv.BPT + CEDIS': 2299, 'WIP + Prog hoy': 0, '07-nov': 854, 'Inv. Final 1': 1445, '08-nov': 760, 'Inv Final 2': 685, Tiendita: 3792, Programar: 3107, 'Ajuste Cargas': 2, Pedido: 5136, 'Inv final 3': 5821, 'Dif Inv final':5821 },
-  { SKU: 'X010', 'Minimo Kgs/carga': 1615, 'Inv.BPT + CEDIS': 4077, 'WIP + Prog hoy': 0, '07-nov': 849, 'Inv. Final 1': 3228, '08-nov': 474, 'Inv Final 2': 2754, Tiendita: 2630, Programar: -125, 'Ajuste Cargas': 0, Pedido: 2754, 'Inv final 3': 125, 'Dif Inv final':2754 },
-  { SKU: 'X479', 'Minimo Kgs/carga': 800, 'Inv.BPT + CEDIS': 559, 'WIP + Prog hoy': 0, '07-nov': 0, 'Inv. Final 1': 559, '08-nov': 0, 'Inv Final 2': 559, Tiendita: 700, Programar: 141, 'Ajuste Cargas': 1, Pedido: 1164, 'Inv final 3': 1723, 'Dif Inv final':1723 },
-  { SKU: 'X971', 'Minimo Kgs/carga': 2568, 'Inv.BPT + CEDIS': 2299, 'WIP + Prog hoy': 0, '07-nov': 854, 'Inv. Final 1': 1445, '08-nov': 760, 'Inv Final 2': 685, Tiendita: 3792, Programar: 3107, 'Ajuste Cargas': 2, Pedido: 5136, 'Inv final 3': 5821, 'Dif Inv final':5821 },
-  { SKU: 'X010', 'Minimo Kgs/carga': 1615, 'Inv.BPT + CEDIS': 4077, 'WIP + Prog hoy': 0, '07-nov': 849, 'Inv. Final 1': 3228, '08-nov': 474, 'Inv Final 2': 2754, Tiendita: 2630, Programar: -125, 'Ajuste Cargas': 0, Pedido: 2754, 'Inv final 3': 125, 'Dif Inv final':2754 },
-  { SKU: 'X479', 'Minimo Kgs/carga': 800, 'Inv.BPT + CEDIS': 559, 'WIP + Prog hoy': 0, '07-nov': 0, 'Inv. Final 1': 559, '08-nov': 0, 'Inv Final 2': 559, Tiendita: 700, Programar: 141, 'Ajuste Cargas': 1, Pedido: 1164, 'Inv final 3': 1723, 'Dif Inv final':1723 },
-  { SKU: 'X971', 'Minimo Kgs/carga': 2568, 'Inv.BPT + CEDIS': 2299, 'WIP + Prog hoy': 0, '07-nov': 854, 'Inv. Final 1': 1445, '08-nov': 760, 'Inv Final 2': 685, Tiendita: 3792, Programar: 3107, 'Ajuste Cargas': 2, Pedido: 5136, 'Inv final 3': 5821, 'Dif Inv final':5821 },
-  { SKU: 'X010', 'Minimo Kgs/carga': 1615, 'Inv.BPT + CEDIS': 4077, 'WIP + Prog hoy': 0, '07-nov': 849, 'Inv. Final 1': 3228, '08-nov': 474, 'Inv Final 2': 2754, Tiendita: 2630, Programar: -125, 'Ajuste Cargas': 0, Pedido: 2754, 'Inv final 3': 125, 'Dif Inv final':2754 },
-  { SKU: 'X479', 'Minimo Kgs/carga': 800, 'Inv.BPT + CEDIS': 559, 'WIP + Prog hoy': 0, '07-nov': 0, 'Inv. Final 1': 559, '08-nov': 0, 'Inv Final 2': 559, Tiendita: 700, Programar: 141, 'Ajuste Cargas': 1, Pedido: 1164, 'Inv final 3': 1723, 'Dif Inv final':1723 },
-  { SKU: 'X971', 'Minimo Kgs/carga': 2568, 'Inv.BPT + CEDIS': 2299, 'WIP + Prog hoy': 0, '07-nov': 854, 'Inv. Final 1': 1445, '08-nov': 760, 'Inv Final 2': 685, Tiendita: 3792, Programar: 3107, 'Ajuste Cargas': 2, Pedido: 5136, 'Inv final 3': 5821, 'Dif Inv final':5821 },
-
-];
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060',
+    Rack: '11 x 16',
+    KgLote: 2.210,
+    Racks: '2,0',
+    TIPO: 'MOL',
+    Plan1: '5:40 a. m.',
+    Plan2: '7:20 a. m.',
+    Plan3: '7:32 a. m.',
+    Plan4: '9:02 a. m.',
+    Plan5: '9:02 a. m.',
+    Plan6: '1:32 p. m.',
+    Plan7: '1:32 p. m.',
+    Plan8: '5:42 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060',
+    Rack: '11 x 16',
+    KgLote: 2.210,
+    Racks: '2,0',
+    TIPO: 'MOL',
+    Plan1: '5:40 a. m.',
+    Plan2: '7:20 a. m.',
+    Plan3: '7:32 a. m.',
+    Plan4: '9:02 a. m.',
+    Plan5: '9:02 a. m.',
+    Plan6: '1:32 p. m.',
+    Plan7: '1:32 p. m.',
+    Plan8: '5:42 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060',
+    Rack: '11 x 16',
+    KgLote: 2.210,
+    Racks: '2,0',
+    TIPO: 'MOL',
+    Plan1: '5:40 a. m.',
+    Plan2: '7:20 a. m.',
+    Plan3: '7:32 a. m.',
+    Plan4: '9:02 a. m.',
+    Plan5: '9:02 a. m.',
+    Plan6: '1:32 p. m.',
+    Plan7: '1:32 p. m.',
+    Plan8: '5:42 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  },
+  {
+    Destino: 'MVC10',
+    SKU: '11060B',
+    Rack: '11 x 16',
+    KgLote: 3.600,
+    Racks: '3,0',
+    TIPO: 'MOL',
+    Plan1: '4:00 a. m.',
+    Plan2: '5:40 a. m.',
+    Plan3: '6:01 a. m.',
+    Plan4: '7:31 a. m.',
+    Plan5: '7:31 a. m.',
+    Plan6: '12:01 p. m.',
+    Plan7: '12:01 p. m.',
+    Plan8: '4:11 p. m.',
+  }]
 
 const columns = [
+  'Destino',
   'SKU',
-  'Minimo Kgs/carga',
-  'Inv.BPT + CEDIS',
-  'WIP + Prog hoy',
-  '07-nov',
-  'Inv. Final 1',
-  '08-nov',
-  'Inv Final 2',
-  'Tiendita',
-  'Programar',
-  'Ajuste Cargas',
-  'Pedido',
-  'Inv final 3',
-  'Dif Inv final',
+  'Rack',
+  'kgLote',
+  'Racks',
+  'TIPO',
+  'Plan1',
+  'Plan2',
+  'Plan3',
+  'Plan4',
+  'Plan5',
+  'Plan6',
+  'Plan7',
+  'Plan8',
 ];
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -82,7 +258,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }) {
+function Cell({ column, value}) {
     
     let textColor = "inherit";
 
@@ -92,49 +268,16 @@ function Cell({ column, value, isEditing, handleChange, handleEdit, handleSave }
 
     return (
       <StyledTableCell align="center" style={{ color: textColor }}>
-        {column === 'Ajuste Cargas' ? (
-          isEditing ? (
-            <div>
-              <input type="text" value={value} onChange={handleChange} />
-              <SaveIcon onClick={handleSave} />
-            </div>
-          ) : (
-            <div>
-              {value} <CreateIcon onClick={handleEdit} />
-            </div>
-          )
-        ) : (
-          value
-        )}
+          {value}
       </StyledTableCell>
     );
 }
 
 export default function TablaInteractiva() {
-  const [data, setData] = useState(dataInicial);
-  const [editingCell, setEditingCell] = useState(null);
   const [columnaOriginal, setColumnaOriginal] = useState(columns) 
   const [columnsIterable, setColumnsIterable] = useState(columns.slice(0, columns.length - 3))
-
-  const handleEditClick = (rowIndex) => {
-    setEditingCell(rowIndex);
-  };
-
-  const handleSaveClick = (rowIndex) => {
-    // Guardar los cambios en la celda de la fila rowIndex
-    setEditingCell(null);
-  };
-
-  const handleChange = (e, rowIndex) => {
-    // Actualizar el valor de la celda en la fila rowIndex
-    const newValue = e.target.value;
-    const updatedData = data.map((row, index) =>
-      index === rowIndex ? { ...row, "Ajuste Cargas": newValue } : row
-    );
-
-    setData(updatedData);
-  };
-
+  const [rowsPerPage, setRowsPerPage] = React.useState(11);
+  const [page, setPage] = React.useState(0);
   const derechadaColumns = () => {
     const derecha = columnaOriginal.slice(columnaOriginal.length - 3, columnaOriginal.length )
     const ajusteArray = columnsIterable.slice(0, columnsIterable.length - 3)
@@ -147,18 +290,27 @@ export default function TablaInteractiva() {
     const newArray = [...ajusteArray, ...izquierda]
     setColumnsIterable(newArray)
   }
-
-  console.log()
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+    const derecha = columnaOriginal.slice(columnaOriginal.length - 3, columnaOriginal.length )
+    const ajusteArray = columnsIterable.slice(0, columnsIterable.length - 3)
+    const newArray = [...ajusteArray, ...derecha]
+    setColumnsIterable(newArray)
+  };
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 1));
+    setPage(0);
+  };
 
   return (
     <Card sx={{ minWidth: 275, padding:'10px' }}>
       <CardContent>
       <CardActions>
-        <Button size="small">Requerimiento producción</Button>
-        <Button size="small" onClick={izquierdaColumns}><ArrowBackIcon >Izquierda</ArrowBackIcon></Button>
-        <Button size="small" onClick={derechadaColumns}><ArrowForwardIcon>Derecha</ArrowForwardIcon></Button>
       </CardActions>
-       
+      <IconButton size="small">Grafica Interactiva</IconButton>
+      <IconButton size="small" sx={{float:'right'}} onClick={derechadaColumns}><ArrowForwardIcon>Derecha</ArrowForwardIcon></IconButton>
+      <IconButton size="small" sx={{float:'right'}} onClick={izquierdaColumns}><ArrowBackIcon >Izquierda</ArrowBackIcon></IconButton>
+        
           <TableContainer component={Paper} sx={{ boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -171,19 +323,13 @@ export default function TablaInteractiva() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data.map((row, rowIndex) => (
+                {dataInicial.map((row, rowIndex) => (
                   <StyledTableRow key={rowIndex}>
                     {columnsIterable.map((column) => (
                       <Cell
                         key={column}
                         column={column}
                         value={row[column]}
-                        isEditing={
-                          rowIndex === editingCell && column === "Ajuste Cargas"
-                        }
-                        handleChange={(e) => handleChange(e, rowIndex)}
-                        handleEdit={() => handleEditClick(rowIndex)}
-                        handleSave={() => handleSaveClick(rowIndex)}
                       />
                     ))}
                   </StyledTableRow>

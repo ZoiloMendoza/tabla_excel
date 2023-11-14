@@ -54,7 +54,7 @@ export default function DashBoard() {
               }}
             >
               <CloseIcon
-                sx={{ marginTop: "25%", textAlign: "left", width: "100%" }}
+                sx={{ marginTop: "25%", float:'left'}}
                 fontSize="medium"
                 onClick={() => setOpenTable(!openTable)}
               />
