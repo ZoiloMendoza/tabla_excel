@@ -663,54 +663,38 @@ export default function TablaInteractiva() {
   const [columnaOriginal, setColumnaOriginal] = useState(columns);
   const [columnsVisible, setColumnsVisible] = useState(columnaOriginal.slice(0, 14));
 
-  const derechadaColumns = () => {
-    let nuevasColumnas = []
-    if(columnsVisible[8] === 'Plan1') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(10,16));
-      setColumnsVisible(nuevasColumnas);
-    }
-    if(columnsVisible[8] === 'Plan3') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(12,18));
-      setColumnsVisible(nuevasColumnas);
-    }
-    if(columnsVisible[8] === 'Plan5') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(14,20));
-      setColumnsVisible(nuevasColumnas);
-    }
-    if(columnsVisible[8] === 'Plan7') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(16,22));
-      setColumnsVisible(nuevasColumnas);
-    }
-    if(columnsVisible[8] === 'Plan9') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(18,24));
-      setColumnsVisible(nuevasColumnas);
-    }
-
-  };
-
-  const izquierdaColumns = () => {
-    let nuevasColumnas = []
-    if(columnsVisible[8] === 'Plan3') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(8,14));
-      setColumnsVisible(nuevasColumnas);
-    }
-    if(columnsVisible[8] === 'Plan5') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(10,16));
-      setColumnsVisible(nuevasColumnas);
-    }
-    if(columnsVisible[8] === 'Plan7') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(12,18));
-      setColumnsVisible(nuevasColumnas);
-    }
-    if(columnsVisible[8] === 'Plan9') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(14,20));
-      setColumnsVisible(nuevasColumnas);
-    }
-    if(columnsVisible[8] === 'Plan11') {
-      nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(16,22));
+  const moverColumnas = (direction) => {
+    // Mapeo de relaciones entre la columna actual y las nuevas columnas según la dirección.
+    const mapping = {
+      derecha: {
+        'Plan1': 10,
+        'Plan3': 12,
+        'Plan5': 14,
+        'Plan7': 16,
+        'Plan9': 18,
+      },
+      izquierda: {
+        'Plan3': 8,
+        'Plan5': 10,
+        'Plan7': 12,
+        'Plan9': 14,
+        'Plan11': 16,
+      },
+    };
+    // Obtenemos la columna actual.
+    const currentIndex = columnsVisible[8];
+    
+    // Obtenemos el nuevo índice según el mapeo y la dirección.
+    const newIndex = mapping[direction][currentIndex];
+  
+    if (newIndex !== undefined) {
+      // Construimos las nuevas columnas concatenando las columnas originales.
+      const nuevasColumnas = columnaOriginal.slice(0, 8).concat(columnaOriginal.slice(newIndex, newIndex + 6));
       setColumnsVisible(nuevasColumnas);
     }
   };
+  
+  
  
 
   return (
@@ -719,8 +703,8 @@ export default function TablaInteractiva() {
       <CardActions>
       </CardActions>
       <IconButton size="small">Grafica Interactiva</IconButton>
-      <IconButton size="small" sx={{float:'right'}} onClick={derechadaColumns}><ArrowForwardIcon>Derecha</ArrowForwardIcon></IconButton>
-      <IconButton size="small" sx={{float:'right'}} onClick={izquierdaColumns}><ArrowBackIcon >Izquierda</ArrowBackIcon></IconButton>
+      <IconButton size="small" sx={{float:'right'}} onClick={() => moverColumnas('derecha')}><ArrowForwardIcon>Derecha</ArrowForwardIcon></IconButton>
+      <IconButton size="small" sx={{float:'right'}} onClick={() => moverColumnas('izquierda')}><ArrowBackIcon >Izquierda</ArrowBackIcon></IconButton>
         
           <TableContainer component={Paper} sx={{ boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
