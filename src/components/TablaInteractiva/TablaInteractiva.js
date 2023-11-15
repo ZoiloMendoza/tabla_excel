@@ -632,6 +632,45 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
 }));
 
+const StyledTableCell_1 = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#F3B3B2',
+    color: '#13100c',
+    fontWeight: 700,
+    fontSize: 14,
+    textAlign: 'center', 
+    padding:'0 0 7px 0'
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+const StyledTableCell_2 = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#DFDC78',
+    color: '#13100c',
+    fontWeight: 700,
+    fontSize: 14,
+    textAlign: 'center', 
+    padding:'0 0 7px 0'
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+const StyledTableCell_3 = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#C7F3B2',
+    color: '#13100c',
+    fontWeight: 700,
+    fontSize: 14,
+    textAlign: 'center', 
+    padding:'0 0 7px 0'
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(even)': { //Se cambio de odd a even
       backgroundColor: 'rgba(223, 235, 237, 0.5)',
@@ -722,28 +761,19 @@ export default function TablaInteractiva() {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
+                
+                <StyledTableCell align="center" colSpan={8}>Celda 2</StyledTableCell>
+                <StyledTableCell_1 align="center" colSpan={2}>Mez</StyledTableCell_1>
+                <StyledTableCell_2 align="center" colSpan={2}>Embutido</StyledTableCell_2>
+                <StyledTableCell_3 align="center" colSpan={2}>Cocimiento</StyledTableCell_3>
+              </TableRow>
+              <TableRow>
                 {columnsVisible.map((column, index) => (
                   <StyledTableCell align="center" key={column}>
-                    <Box sx={{ display: "flex", flexDirection: "column" }}>
-                      {column.startsWith("Plan") && (
-                        <>
-                          <Box
-                            sx={{
-                              background:
-                              index === 8 || index === 9
-                                  ? "#F3B3B2"
-                                  : index === 10 || index === 11
-                                  ? "#DFDC78"
-                                  : (index === 12 || index === 13) && "#C7F3B2",
-                            }}
-                          >
-                            {'text'}
-                          </Box>
-                          <Box>{column}</Box>
-                        </>
-                      )}
-                      {!column.startsWith("Plan") && <Box>{column}</Box>}
-                    </Box>
+                   
+                     {column}
+                        
+                    
                   </StyledTableCell>
                 ))}
               </TableRow>
