@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -624,7 +625,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       fontWeight: 700,
       fontSize: 14,
       textAlign: 'center', 
-      padding:'7px'
+      padding:'0 0 7px 0'
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
@@ -683,7 +684,7 @@ export default function TablaInteractiva() {
     };
     // Obtenemos la columna actual.
     const currentIndex = columnsVisible[8];
-    
+
     // Obtenemos el nuevo índice según el mapeo y la dirección.
     const newIndex = mapping[direction][currentIndex];
   
@@ -694,47 +695,71 @@ export default function TablaInteractiva() {
     }
   };
   
-  
- 
-
   return (
-    <Card sx={{ minWidth: 275, padding:'10px' }}>
+    <Card sx={{ minWidth: 275, padding: "10px" }}>
       <CardContent>
-      <CardActions>
-      </CardActions>
-      <IconButton size="small">Grafica Interactiva</IconButton>
-      <IconButton size="small" sx={{float:'right'}} onClick={() => moverColumnas('derecha')}><ArrowForwardIcon>Derecha</ArrowForwardIcon></IconButton>
-      <IconButton size="small" sx={{float:'right'}} onClick={() => moverColumnas('izquierda')}><ArrowBackIcon >Izquierda</ArrowBackIcon></IconButton>
-        
-          <TableContainer component={Paper} sx={{ boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" }}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  {columnsVisible.map((column) => (
-                    <StyledTableCell align="center" key={column}>
-                      {column}
-                    </StyledTableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {dataInicial.map((row, rowIndex) => (
-                  <StyledTableRow key={rowIndex}>
-                    {columnsVisible.map((column) => (
-                      <Cell
-                        key={column}
-                        column={column}
-                        value={row[column]}
-                      />
-                    ))}
-                  </StyledTableRow>
+        <CardActions></CardActions>
+        <IconButton size="small">Grafica Interactiva</IconButton>
+        <IconButton
+          size="small"
+          sx={{ float: "right" }}
+          onClick={() => moverColumnas("derecha")}
+        >
+          <ArrowForwardIcon>Derecha</ArrowForwardIcon>
+        </IconButton>
+        <IconButton
+          size="small"
+          sx={{ float: "right" }}
+          onClick={() => moverColumnas("izquierda")}
+        >
+          <ArrowBackIcon>Izquierda</ArrowBackIcon>
+        </IconButton>
+
+        <TableContainer
+          component={Paper}
+          sx={{ boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" }}
+        >
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                {columnsVisible.map((column, index) => (
+                  <StyledTableCell align="center" key={column}>
+                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                      {column.startsWith("Plan") && (
+                        <>
+                          <Box
+                            sx={{
+                              background:
+                              index === 8 || index === 9
+                                  ? "#F3B3B2"
+                                  : index === 10 || index === 11
+                                  ? "#DFDC78"
+                                  : (index === 12 || index === 13) && "#C7F3B2",
+                            }}
+                          >
+                            {'text'}
+                          </Box>
+                          <Box>{column}</Box>
+                        </>
+                      )}
+                      {!column.startsWith("Plan") && <Box>{column}</Box>}
+                    </Box>
+                  </StyledTableCell>
                 ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {dataInicial.map((row, rowIndex) => (
+                <StyledTableRow key={rowIndex}>
+                  {columnsVisible.map((column) => (
+                    <Cell key={column} column={column} value={row[column]} />
+                  ))}
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </CardContent>
-      
     </Card>
   );
 }
