@@ -12,7 +12,7 @@ import TablaDinamica from '../TablaDinamica/TablaDinamica.js';
 import SwipeableTemporaryDrawer from '../example.js';
 import Paper from '@mui/material/Paper';
 import CloseIcon from '@mui/icons-material/Close';
-
+import Barra from '../MiniTabla/Barra.js';
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -34,7 +34,7 @@ export default function DashBoard() {
           <DrawerHeader />
           <Grid container columns={80}>
             <Grid item xs={openTable ? 64 : 80}>
-              <TablaInteractiva />
+              <Barra /> 
             </Grid>
             {openTable ? (
               <Grid item xs={16}>
