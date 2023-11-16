@@ -9,7 +9,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import MiniTabla from './MiniTabla';
 import Grid from '@mui/material/Grid';
-import NombreFilas from './NombreFilas';
+
 const steps = [
   {
     label: "De la Semana 34 a la 36",

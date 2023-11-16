@@ -763,8 +763,8 @@ export default function TablaInteractiva() {
               <TableRow>
                 
                 <StyledTableCell align="center" colSpan={8}>Celda 2</StyledTableCell>
-                <StyledTableCell_1 align="center" colSpan={2}>Mez</StyledTableCell_1>
-                <StyledTableCell_2 align="center" colSpan={2}>Embutido</StyledTableCell_2>
+                <StyledTableCell_1 align="center" colSpan={2}></StyledTableCell_1>
+                <StyledTableCell_2 align="center" colSpan={2}></StyledTableCell_2>
                 <StyledTableCell_3 align="center" colSpan={2}></StyledTableCell_3>
               </TableRow>
               <TableRow>

@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
-import NombreFilas from './NombreFilas';
+
 
 const dataInicial = [
   { '':'Plant Mty Total','Inv Inicial': '1,059.759',  'Demanda':'1,025.698', 'Plan Ajustado':'872.537', 'Prog Sem Antrior':'1,053.174', 'Inv Final':'873.404' },

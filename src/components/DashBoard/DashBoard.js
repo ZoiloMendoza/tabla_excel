@@ -34,7 +34,7 @@ export default function DashBoard() {
           <DrawerHeader />
           <Grid container columns={80}>
             <Grid item xs={openTable ? 64 : 80}>
-              <Barra /> 
+              <TablaInteractiva /> 
             </Grid>
             {openTable ? (
               <Grid item xs={16}>
