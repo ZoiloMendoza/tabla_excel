@@ -13,6 +13,10 @@ import SwipeableTemporaryDrawer from '../example.js';
 import Paper from '@mui/material/Paper';
 import CloseIcon from '@mui/icons-material/Close';
 import Barra from '../MiniTabla/Barra.js';
+import MiniTabla from '../MiniTabla/MiniTabla.js';
+import TablaProgramador from '../TablaProgramador/TablaProgramador.js';
+import TablaResumen from '../TablaProgramador/TablaResumen.js';
+import AlertDialog from '../TablaProgramador/AlertDialog.js';
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -20,6 +24,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
+
+const dataInicial = [
+  { 'SKU':'11060','KG PLAN': 3000,  'Break MIN':2600, 'Comida MIN':0},
+  { 'SKU':'X050B','KG PLAN': 5400,  'Break MIN':30, 'Comida MIN':30},
+  { 'SKU':'X210','KG PLAN': 5000,  'Break MIN':0, 'Comida MIN':0},
+  { 'SKU':'10155','KG PLAN': 5580,  'Break MIN':30, 'Comida MIN':0},
+  { 'SKU':'X450','KG PLAN': 870,  'Break MIN':0, 'Comida MIN':30}
+];
 
 export default function DashBoard() {
   const [openTable, setOpenTable] = useState(false)
@@ -30,11 +42,14 @@ export default function DashBoard() {
       <AppBarSideBar />
       {/*CONTENIDO*/}
       <Box sx={{ display: "flex", width: "100%", }}>
+      
         <Box component="main" sx={{ p: 3, background: "#f4f3f6",width: "100%" }}>
+        
           <DrawerHeader />
+          <AlertDialog dataInicial={dataInicial}/>
           <Grid container columns={80}>
             <Grid item xs={openTable ? 64 : 80}>
-              <TablaInteractiva /> 
+              
             </Grid>
             {openTable ? (
               <Grid item xs={16}>
