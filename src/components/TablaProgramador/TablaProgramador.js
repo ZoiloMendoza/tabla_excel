@@ -157,8 +157,7 @@ function obtenerLeadTime(skuBuscado){
 
 export default function TablaProgramador({dataInicial}) {
     const [data, setData] = useState(dataInicial);
-    const [columnas, setColumnas] = useState(columns)
-
+ 
     useEffect(() => {
       let anterior = [];
       const newData = data.map((obj, index) => {
@@ -187,12 +186,8 @@ export default function TablaProgramador({dataInicial}) {
           .add(tiemSTDdeProduccion)
           .add(moment.duration(obj["Break MIN"], "minutes"))
           .add(moment.duration(obj["Comida MIN"], "minutes"));
-        let hraFormulacion = hraRebadoInicio.subtract(moment.duration(obj['Lead Time'], "hours")).add(24, 'hours');
-        //moment.duration(obj['Lead Time'], "hours")
-        //moment(hraRebanadoInicio).subtract(hraFormulacion).add(24, 'hours');
-        //.add(hraRebadoInicio).add(moment.duration(24, "hours"))
-        console.log(hraFormulacion, 'quepasas')
-        anterior.push(hraRebadoFinal.clone()); // Clonar para evitar modificar la fecha original
+          anterior.push(hraRebadoFinal.clone());
+          let hraFormulacion = hraRebadoInicio.clone().subtract(moment.duration(leadTime, "hours")).add(24, 'hours');
 
         return {
           ...obj,
@@ -200,10 +195,10 @@ export default function TablaProgramador({dataInicial}) {
           "Hora Rebanado final": hraRebadoFinal.format("HH:mm"),
           PRIORIDAD: index + 1,
           "KG/HR": kgHr,
-          "HR UTILIZADA": hrUtilizada.toFixed(1), // Convertir a horas
-          "Tiempos STD de producción": tiemSTDdeProduccion.asMinutes(), // Convertir a minutos
-          "Tiempo de cambio": tiempoDeCambio.asMinutes(), // Convertir a minutos
-          "MIN UTILIZADOS": minUtilizados.asMinutes().toFixed(1), // Convertir a minutos
+          "HR UTILIZADA": hrUtilizada.toFixed(1), 
+          "Tiempos STD de producción": tiemSTDdeProduccion.asMinutes(), 
+          "Tiempo de cambio": tiempoDeCambio.asMinutes(), 
+          "MIN UTILIZADOS": minUtilizados.asMinutes().toFixed(1),
           "Lead Time": leadTime,
           "Hra de Formulación": hraFormulacion.format("HH:mm")
         };
