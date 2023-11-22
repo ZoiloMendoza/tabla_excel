@@ -155,11 +155,12 @@ function obtenerLeadTime(skuBuscado){
 }
 
 
-export default function TablaProgramador({dataInicial}) {
+export default function TablaProgramador({dataInicial, setDatosParaTablaRes}) {
     const [data, setData] = useState(dataInicial);
  
     useEffect(() => {
       let anterior = [];
+      let sumaMinUtilizados = 0;
       const newData = data.map((obj, index) => {
         let kgHr = obtenerKgHr(obj["SKU"]);
         let hrUtilizada = kgHr === 0 ? 0 : obj["KG PLAN"] / kgHr; //hras
@@ -188,7 +189,7 @@ export default function TablaProgramador({dataInicial}) {
           .add(moment.duration(obj["Comida MIN"], "minutes"));
           anterior.push(hraRebadoFinal.clone());
           let hraFormulacion = hraRebadoInicio.clone().subtract(moment.duration(leadTime, "hours")).add(24, 'hours');
-
+          sumaMinUtilizados += minUtilizados.asMinutes()
         return {
           ...obj,
           "Hora Rebanado inicio": hraRebadoInicio.format("HH:mm"),
@@ -204,6 +205,7 @@ export default function TablaProgramador({dataInicial}) {
         };
       });
       setData(newData);
+      setDatosParaTablaRes(sumaMinUtilizados)
     }, []);
 
     return (

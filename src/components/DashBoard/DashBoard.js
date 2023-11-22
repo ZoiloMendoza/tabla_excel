@@ -28,7 +28,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const dataInicial = [
   { 'SKU':'11060','KG PLAN': 3000,  'Break MIN':2600, 'Comida MIN':0},
   { 'SKU':'X050B','KG PLAN': 5400,  'Break MIN':30, 'Comida MIN':30},
-  { 'SKU':'X210','KG PLAN': 5000,  'Break MIN':0, 'Comida MIN':0},
+  { 'SKU':'X210','KG PLAN': 10000,  'Break MIN':0, 'Comida MIN':0},
   { 'SKU':'10155','KG PLAN': 5580,  'Break MIN':30, 'Comida MIN':0},
   { 'SKU':'X450','KG PLAN': 870,  'Break MIN':0, 'Comida MIN':30}
 ];
