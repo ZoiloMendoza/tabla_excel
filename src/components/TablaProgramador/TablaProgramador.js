@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import moment from 'moment';
 import { styled } from '@mui/material/styles';
 
+//Tabla que consulta Hoja "Tiempos de rebanado concentrado"
 const tiempos_de_rebanado = [
   { SKU: 'X198', KgPorHora: 1620 },
   { SKU: 'X168', KgPorHora: 1620 },
@@ -39,6 +40,7 @@ const tiempos_de_rebanado = [
   { SKU: 'X460', KgPorHora: 1296 },
   { SKU: '53858', KgPorHora: 1296 }
 ];
+//Tabla que consulta "Tiempo de Cambio"
 const datosParaTiempoDeCambio = [
   { SKU: '11060', cantidad: 0 },
   { SKU: 'X050B', cantidad: 10 },
@@ -50,6 +52,7 @@ const datosParaTiempoDeCambio = [
   { SKU: 'X450', cantidad: 10 },
   { SKU: 'X450', cantidad: 0 },
 ];
+//Tabla que consulta hoja "Lead Time"
 const datosLeadTime = [
   { SKU: '10155', tiempoTotalHrs: 17.4 },
   { SKU: '11022', tiempoTotalHrs: 17.4 },
@@ -74,6 +77,7 @@ const datosLeadTime = [
   { SKU: 'X210', tiempoTotalHrs: 12.0 },
   { SKU: '71033', tiempoTotalHrs: 13.6 },
 ];
+//Nombre de las columnas de la tabla principal
 const columns = [
   'Hra de Formulación',
   'Hora Rebanado inicio',

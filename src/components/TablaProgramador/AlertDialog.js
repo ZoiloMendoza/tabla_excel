@@ -25,7 +25,7 @@ export default function AlertDialog({dataInicial}) {
   };
 
   return (
-    <Box sx={{ width: "100%", margin: "0px", }}>
+    <Box sx={{ width: "100%", margin: "0px" }}>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open ejemplo
       </Button>
@@ -36,13 +36,16 @@ export default function AlertDialog({dataInicial}) {
         aria-describedby="alert-dialog-description"
         maxWidth="x1"
       >
-        <DialogTitle id="alert-dialog-title" >{"Revisa tus datos"}</DialogTitle>
-        <DialogContent sx={{ margin: "0px", overflowY: "auto",  }}>
-          <TablaProgramador dataInicial={dataInicial} setDatosParaTablaRes={setDatosParaTablaRes}/>
+        <DialogTitle id="alert-dialog-title">{"Revisa tus datos"}</DialogTitle>
+        <DialogContent sx={{ margin: "0px", overflowY: "auto" }}>
+          <TablaProgramador
+            dataInicial={dataInicial}
+            setDatosParaTablaRes={setDatosParaTablaRes}
+          />
         </DialogContent>
-        <DialogContent sx={{display:'flex', width:'41%', gap:1}}>
+        <DialogContent sx={{ display: "flex", width: "41%", gap: 1 }}>
           <TablaTiempoSTD />
-          <TablaRes total={datosParaTablaRes} minutosPorDia={1080}/>
+          <TablaRes total={datosParaTablaRes} minutosPorDia={1080} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Recalcular</Button>

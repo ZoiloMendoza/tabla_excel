@@ -17,6 +17,7 @@ import MiniTabla from '../MiniTabla/MiniTabla.js';
 import TablaProgramador from '../TablaProgramador/TablaProgramador.js';
 import TablaResumen from '../TablaProgramador/TablaResumen.js';
 import AlertDialog from '../TablaProgramador/AlertDialog.js';
+
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -25,6 +26,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
+//Datos que se pasan al componente <AlertDialog/>
 const dataInicial = [
   { 'SKU':'11060','KG PLAN': 3000,  'Break MIN':2600, 'Comida MIN':0},
   { 'SKU':'X050B','KG PLAN': 5400,  'Break MIN':30, 'Comida MIN':30},
@@ -34,58 +36,54 @@ const dataInicial = [
 ];
 
 export default function DashBoard() {
-  const [openTable, setOpenTable] = useState(false)
- //"main" p: 3, background: "#f4f3f6" }}>
+  const [openTable, setOpenTable] = useState(false);
+  //"main" p: 3, background: "#f4f3f6" }}>
   return (
     <Box sx={{ display: "flex", background: "#f4f3f6" }}>
       <CssBaseline />
       <AppBarSideBar />
       {/*CONTENIDO*/}
-      <Box sx={{ display: "flex", width: "100%", }}>
-      
-        <Box component="main" sx={{ p: 3, background: "#f4f3f6",width: "100%" }}>
-        
+      <Box sx={{ display: "flex", width: "100%" }}>
+        <Box
+          component="main"
+          sx={{ p: 3, background: "#f4f3f6", width: "100%" }}
+        >
           <DrawerHeader />
-          <AlertDialog dataInicial={dataInicial}/>
+          <AlertDialog dataInicial={dataInicial} />
           <Grid container columns={80}>
-            <Grid item xs={openTable ? 64 : 80}>
-              
-            </Grid>
+            <Grid item xs={openTable ? 64 : 80}></Grid>
             {openTable ? (
               <Grid item xs={16}>
-              <Paper
-              sx={{
-                //width: "100%",
-                padding: "15px",
-                paddingBottom:'20px',
-                height: "100vh",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "stretch",
-                position: "fixed",
-                //mt: 3,
-                right: "0rem",
-                top: "1rem",
-              }}
-            >
-              <CloseIcon
-                sx={{ marginTop: "25%", float:'left'}}
-                fontSize="medium"
-                onClick={() => setOpenTable(!openTable)}
-              />
-  
-              <TablaDinamica />
-            </Paper>
-            </Grid>
-            )
-            : (
-              <Grid item xs={1} >
+                <Paper
+                  sx={{
+                    //width: "100%",
+                    padding: "15px",
+                    paddingBottom: "20px",
+                    height: "100vh",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "stretch",
+                    position: "fixed",
+                    //mt: 3,
+                    right: "0rem",
+                    top: "1rem",
+                  }}
+                >
+                  <CloseIcon
+                    sx={{ marginTop: "25%", float: "left" }}
+                    fontSize="medium"
+                    onClick={() => setOpenTable(!openTable)}
+                  />
+                  <TablaDinamica />
+                </Paper>
+              </Grid>
+            ) : (
+              <Grid item xs={1}>
                 <BasicSpeedDial onClick={() => setOpenTable(!openTable)} />
               </Grid>
             )}
           </Grid>
         </Box>
-        
       </Box>
     </Box>
   );
